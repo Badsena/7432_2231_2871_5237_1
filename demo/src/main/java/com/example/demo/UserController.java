@@ -22,46 +22,6 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @Autowired
-private EmailService emailService;
-
-@PostMapping("/forgot-password-otp")
-public ResponseEntity<?> forgotPasswordOtp(@RequestBody Map<String, String> req) {
-    String email = req.get("email");
-    User user = repo.findByEmail(email);
-    if (user == null) {
-        return ResponseEntity.badRequest().body("Email not found");
-    }
-
-    String otp = String.valueOf(new Random().nextInt(899999) + 100000); // 6-digit OTP
-    user.setOtp(otp);
-    user.setOtpExpiry(LocalDateTime.now().plusMinutes(5));
-    repo.save(user);
-
-    emailService.sendOtpEmail(email, otp);
-    return ResponseEntity.ok("OTP sent to email");
-}
-
-@PostMapping("/verify-otp-reset-password")
-public ResponseEntity<?> verifyOtpResetPassword(@RequestBody Map<String, String> req) {
-    String email = req.get("email");
-    String otp = req.get("otp");
-    String newPassword = req.get("newPassword");
-
-    User user = repo.findByEmail(email);
-    if (user == null || user.getOtp() == null || !user.getOtp().equals(otp)
-        || user.getOtpExpiry().isBefore(LocalDateTime.now())) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired OTP");
-    }
-
-    user.setPassword(newPassword);
-    user.setOtp(null);
-    user.setOtpExpiry(null);
-    repo.save(user);
-
-    return ResponseEntity.ok("Password reset successful");
-}
-
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
