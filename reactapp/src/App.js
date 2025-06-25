@@ -5,7 +5,7 @@ import Register from './components/Register';
 import ForgetPassword from './components/ForgetPassword';
 import ResetPassword from './components/ResetPassword';
 import Home from './components/Home';
-import Home from './components/Home';
+import Counter from './components/Counter';
 import ProtectedRoute from './components/ProtectedRoute';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
