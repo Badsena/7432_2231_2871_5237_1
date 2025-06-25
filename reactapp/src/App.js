@@ -22,7 +22,16 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          
+          <Route path="/" element={<Login toggleTheme={toggleTheme} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } />
+          {/* Placeholder for forgot password */}
+          <Route path="/forgot-password" element={<ForgetPassword/>} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
