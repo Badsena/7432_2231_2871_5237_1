@@ -5,6 +5,7 @@ import Register from './components/Register';
 import ForgetPassword from './components/ForgetPassword';
 import ResetPassword from './components/ResetPassword';
 import Home from './components/Home';
+import Home from './components/Home';
 import ProtectedRoute from './components/ProtectedRoute';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
@@ -31,6 +32,7 @@ function App() {
           } />
           {/* Placeholder for forgot password */}
           <Route path="/forgot-password" element={<ForgetPassword/>} />
+          <Route path="/counter" element={<Counter />} />
           <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
