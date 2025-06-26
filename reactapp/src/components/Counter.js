@@ -5,10 +5,14 @@ const Counter = () => {
     const increase_count = () => {
         setCount(++count);
     }
+    const decrease_count = () => {
+        setCount(--count);
+    }
   return (
     <>
     <div>Counter</div> <div>{count}</div>
     <button onClick= {increase_count} >Click me</button>
+    <button onClick= {decrease_count} >-</button>
     </>
   )
 }
